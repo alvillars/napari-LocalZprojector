@@ -24,7 +24,7 @@ from napari.utils.notifications import show_info
                 maxZ={"widget_type": "SpinBox","value":0, "name":'spin6', "label":'maxZ:', "max":60},
                 dropdown={"choices":  ['mean','std','median','mean_mass','mean_std']})          
 
-def localzprojection(layer : ImageData, halfsize=40, step_size=20, dz=1, minT=1, maxT=1, dropdown='mean') -> ImageData:
+def localzprojection(layer : ImageData, halfsize=40, step_size=20, dz=1, minT=1, maxT=1, minZ=0, maxZ=0, dropdown='mean') -> ImageData:
     layer = np.squeeze(layer)
 
     if np.ndim(layer) < 3:
@@ -33,8 +33,8 @@ def localzprojection(layer : ImageData, halfsize=40, step_size=20, dz=1, minT=1,
     if np.ndim(layer) == 3:
         show_info(str(np.shape(layer)))
         size_z, size_x, size_y = np.shape(layer)
-        zfilter = get_zfilter(im=layer, half_size=halfsize, size_z=size_z,
-                    size_x=size_x, size_y=size_y, step_size=step_size, method=dropdown)
+        zfilter = get_zfilter(im=layer[minZ:maxZ,:,:], half_size=halfsize, size_z=size_z,
+                    size_x=size_x, size_y=size_y, step_size=step_size, method=dropdown)+minZ
         zmap = getzmap(zfilter)
         interp_zmap = get_interp_zmap(zmap= zmap, size_z=size_z, 
                     size_x=size_x, size_y=size_y, step_size=step_size, half_size=halfsize)
@@ -48,8 +48,9 @@ def localzprojection(layer : ImageData, halfsize=40, step_size=20, dz=1, minT=1,
         zproj = np.empty((size_t, size_x, size_y))
         for t in range(minT, maxT):
             show_info(str(t))
-            zfilter = get_zfilter(im=layer[t,:,:,:], half_size=halfsize, size_z=size_z,
-                        size_x=size_x, size_y=size_y, step_size=step_size, method=dropdown)
+            temp_im = np.reshape(layer[t,minZ:maxZ,:,:],(maxZ-minZ, size_x, size_y))
+            zfilter = get_zfilter(im=temp_im, half_size=halfsize, size_z=size_z,
+                        size_x=size_x, size_y=size_y, step_size=step_size, method=dropdown)+minZ
             zmap = getzmap(zfilter)
             interp_zmap = get_interp_zmap(zmap= zmap, size_z=size_z, 
                         size_x=size_x, size_y=size_y, step_size=step_size, half_size=halfsize)

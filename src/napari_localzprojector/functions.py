@@ -4,7 +4,8 @@ from scipy.interpolate import interp2d
 from scipy.ndimage import gaussian_filter, center_of_mass
 from napari.types import ImageData
 
-def get_zfilter(im: ImageData, half_size, size_z, size_x, size_y,step_size, method):
+def get_zfilter(im, half_size, size_z, size_x, size_y,step_size, method):
+    size_z = np.shape(im)[0]
     zfilter = np.empty((size_z,int(round((size_x-half_size)/step_size)), int(round((size_x-half_size)/step_size))))
     i = 0
     if method == 'mean':
