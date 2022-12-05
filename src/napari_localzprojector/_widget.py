@@ -20,7 +20,9 @@ from napari.utils.notifications import show_info
                 dz={"widget_type": "SpinBox","value":1, "name":'spin2', "label":'dz:', "max":5},
                 minT={"widget_type": "SpinBox","value":0, "name":'spin3', "label":'minT:', "max":10},
                 maxT={"widget_type": "SpinBox","value":0, "name":'spin4', "label":'maxT:', "max":10},
-                dropdown={"choices":  ['mean','std','median','mean_mass']})          
+                minZ={"widget_type": "SpinBox","value":0, "name":'spin5', "label":'minZ:', "max":60},
+                maxZ={"widget_type": "SpinBox","value":0, "name":'spin6', "label":'maxZ:', "max":60},
+                dropdown={"choices":  ['mean','std','median','mean_mass','mean_std']})          
 
 def localzprojection(layer : ImageData, halfsize=40, step_size=20, dz=1, minT=1, maxT=1, dropdown='mean') -> ImageData:
     layer = np.squeeze(layer)

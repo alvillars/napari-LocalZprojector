@@ -15,7 +15,9 @@ def get_zfilter(im: ImageData, half_size, size_z, size_x, size_y,step_size, meth
         fun = lambda a, b : np.median(a, b)
     elif method == 'mean_mass': 
         fun = lambda a, b : np.mean(a, b)/center_of_mass(a)[1]
-    
+    elif method == 'mean_std': 
+        fun = lambda a, b : np.mean(a, b)-np.std(a, b)
+
     for x in range(0, size_x-half_size-1, step_size):
         j=0
         for y in range(0, size_y-half_size-1, step_size):
