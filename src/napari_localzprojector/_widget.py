@@ -8,7 +8,7 @@ Replace code below according to your needs.
 """
 from typing import TYPE_CHECKING
 from .functions import get_interp_zmap, get_zfilter, get_zproj_linear, getzmap
-from magicgui import magic_factory
+from magicgui import magic_factory, magicgui
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
 from napari.types import ImageData
 import numpy as np

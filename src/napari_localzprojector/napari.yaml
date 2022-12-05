@@ -2,45 +2,9 @@ name: napari-LocalZprojector
 display_name: LocalZprojector
 contributions:
   commands:
-    - id: napari-LocalZprojector.get_reader
-      python_name: napari_localzprojector._reader:napari_get_reader
-      title: Open data with LocalZprojector
-    - id: napari-LocalZprojector.write_multiple
-      python_name: napari_localzprojector._writer:write_multiple
-      title: Save multi-layer data with LocalZprojector
-    - id: napari-LocalZprojector.write_single_image
-      python_name: napari_localzprojector._writer:write_single_image
-      title: Save image data with LocalZprojector
-    - id: napari-LocalZprojector.make_sample_data
-      python_name: napari_localzprojector._sample_data:make_sample_data
-      title: Load sample data from LocalZprojector
-    - id: napari-LocalZprojector.make_qwidget
-      python_name: napari_localzprojector._widget:ExampleQWidget
-      title: Make example QWidget
-    - id: napari-LocalZprojector.make_magic_widget
-      python_name: napari_localzprojector._widget:example_magic_widget
-      title: Make example magic widget
-    - id: napari-LocalZprojector.make_func_widget
-      python_name: napari_localzprojector._widget:example_function_widget
-      title: Make example function widget
     - id: napari-LocalZprojector.localzprojection
       python_name: napari_localzprojector._widget:localzprojection
       title: do the projection
-  readers:
-    - command: napari-LocalZprojector.get_reader
-      accepts_directories: false
-      filename_patterns: ['*.npy']
-  writers:
-    - command: napari-LocalZprojector.write_multiple
-      layer_types: ['image*','labels*']
-      filename_extensions: []
-    - command: napari-LocalZprojector.write_single_image
-      layer_types: ['image']
-      filename_extensions: ['.npy']
-  sample_data:
-    - command: napari-LocalZprojector.make_sample_data
-      display_name: LocalZprojector
-      key: unique_id.1
   widgets:
     - command: napari-LocalZprojector.localzprojection
       display_name: localzprojection
