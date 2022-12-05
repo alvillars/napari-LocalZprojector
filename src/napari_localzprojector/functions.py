@@ -5,7 +5,7 @@ from scipy.ndimage import gaussian_filter, center_of_mass
 from napari.types import ImageData
 
 def get_zfilter(im: ImageData, half_size, size_z, size_x, size_y,step_size, method):
-    zfilter = np.empty((size_z,int((size_x-half_size)/step_size),int((size_x-half_size)/step_size)))
+    zfilter = np.empty((size_z,int(round((size_x-half_size)/step_size)), int(round((size_x-half_size)/step_size))))
     i = 0
     if method == 'mean':
         fun = lambda a, b : np.mean(a, b)
@@ -16,9 +16,9 @@ def get_zfilter(im: ImageData, half_size, size_z, size_x, size_y,step_size, meth
     elif method == 'mean_mass': 
         fun = lambda a, b : np.mean(a, b)/center_of_mass(a)[1]
     
-    for x in range(0, size_x-half_size, step_size):
+    for x in range(0, size_x-half_size-1, step_size):
         j=0
-        for y in range(0, size_y-half_size, step_size):
+        for y in range(0, size_y-half_size-1, step_size):
             temp_im = im[:,x:x+half_size,y:y+half_size]
             zfilter[:,i,j] = fun(temp_im, (1,2))
             j=j+1
@@ -37,8 +37,8 @@ def getzmap(zfilter):
     return zmap
 
 def get_interp_zmap(zmap, size_z, size_x, size_y, step_size, half_size):
-    x = np.linspace(0, size_x, int((size_x-half_size)/step_size))
-    y = np.linspace(0, size_y, int((size_y-half_size)/step_size))
+    x = np.linspace(0, size_x, int(round((size_x-half_size)/step_size)))
+    y = np.linspace(0, size_y, int(round((size_y-half_size)/step_size)))
     x2 = np.linspace(0, size_x, size_x)
     y2 = np.linspace(0, size_y, size_y)
     f = interp2d(x, y, zmap, kind='linear')

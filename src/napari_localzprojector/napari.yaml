@@ -23,6 +23,9 @@ contributions:
     - id: napari-LocalZprojector.make_func_widget
       python_name: napari_localzprojector._widget:example_function_widget
       title: Make example function widget
+    - id: napari-LocalZprojector.localzprojection
+      python_name: napari_localzprojector._widget:localzprojection
+      title: do the projection
   readers:
     - command: napari-LocalZprojector.get_reader
       accepts_directories: false
@@ -39,10 +42,5 @@ contributions:
       display_name: LocalZprojector
       key: unique_id.1
   widgets:
-    - command: napari-LocalZprojector.make_qwidget
-      display_name: Example QWidget
-    - command: napari-LocalZprojector.make_magic_widget
-      display_name: Example Magic Widget
-    - command: napari-LocalZprojector.make_func_widget
-      autogenerate: true
-      display_name: Example Function Widget
+    - command: napari-LocalZprojector.localzprojection
+      display_name: localzprojection
