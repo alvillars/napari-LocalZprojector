@@ -1,48 +1,48 @@
-name: localZprojector
-display_name: localzprojector
+name: napari-LocalZprojector
+display_name: LocalZprojector
 contributions:
   commands:
-    - id: localZprojector.get_reader
-      python_name: localzprojector._reader:napari_get_reader
-      title: Open data with localzprojector
-    - id: localZprojector.write_multiple
-      python_name: localzprojector._writer:write_multiple
-      title: Save multi-layer data with localzprojector
-    - id: localZprojector.write_single_image
-      python_name: localzprojector._writer:write_single_image
-      title: Save image data with localzprojector
-    - id: localZprojector.make_sample_data
-      python_name: localzprojector._sample_data:make_sample_data
-      title: Load sample data from localzprojector
-    - id: localZprojector.make_qwidget
-      python_name: localzprojector._widget:ExampleQWidget
+    - id: napari-LocalZprojector.get_reader
+      python_name: napari_localzprojector._reader:napari_get_reader
+      title: Open data with LocalZprojector
+    - id: napari-LocalZprojector.write_multiple
+      python_name: napari_localzprojector._writer:write_multiple
+      title: Save multi-layer data with LocalZprojector
+    - id: napari-LocalZprojector.write_single_image
+      python_name: napari_localzprojector._writer:write_single_image
+      title: Save image data with LocalZprojector
+    - id: napari-LocalZprojector.make_sample_data
+      python_name: napari_localzprojector._sample_data:make_sample_data
+      title: Load sample data from LocalZprojector
+    - id: napari-LocalZprojector.make_qwidget
+      python_name: napari_localzprojector._widget:ExampleQWidget
       title: Make example QWidget
-    - id: localZprojector.make_magic_widget
-      python_name: localzprojector._widget:example_magic_widget
+    - id: napari-LocalZprojector.make_magic_widget
+      python_name: napari_localzprojector._widget:example_magic_widget
       title: Make example magic widget
-    - id: localZprojector.make_func_widget
-      python_name: localzprojector._widget:example_function_widget
+    - id: napari-LocalZprojector.make_func_widget
+      python_name: napari_localzprojector._widget:example_function_widget
       title: Make example function widget
   readers:
-    - command: localZprojector.get_reader
+    - command: napari-LocalZprojector.get_reader
       accepts_directories: false
       filename_patterns: ['*.npy']
   writers:
-    - command: localZprojector.write_multiple
+    - command: napari-LocalZprojector.write_multiple
       layer_types: ['image*','labels*']
       filename_extensions: []
-    - command: localZprojector.write_single_image
+    - command: napari-LocalZprojector.write_single_image
       layer_types: ['image']
       filename_extensions: ['.npy']
   sample_data:
-    - command: localZprojector.make_sample_data
-      display_name: localzprojector
+    - command: napari-LocalZprojector.make_sample_data
+      display_name: LocalZprojector
       key: unique_id.1
   widgets:
-    - command: localZprojector.make_qwidget
+    - command: napari-LocalZprojector.make_qwidget
       display_name: Example QWidget
-    - command: localZprojector.make_magic_widget
+    - command: napari-LocalZprojector.make_magic_widget
       display_name: Example Magic Widget
-    - command: localZprojector.make_func_widget
+    - command: napari-LocalZprojector.make_func_widget
       autogenerate: true
       display_name: Example Function Widget
